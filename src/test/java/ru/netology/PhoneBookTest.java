@@ -1,6 +1,10 @@
 package ru.netology;
 
 import org.junit.jupiter.api.Test;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PhoneBookTest {
@@ -30,5 +34,22 @@ public class PhoneBookTest {
         assertEquals("12345", phoneBook.findByName("Alice"));
         assertEquals("67890", phoneBook.findByName("Bob"));
         assertNull(phoneBook.findByName("Charlie"));
+    }
+
+    @Test
+    public void testPrintAllNames() {
+        PhoneBook phoneBook = new PhoneBook();
+        phoneBook.add("Charlie", "33333");
+        phoneBook.add("Alice", "12345");
+        phoneBook.add("Bob", "67890");
+
+        // Capture the output and assert the order
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        phoneBook.printAllNames();
+
+        String expectedOutput = "Alice\nBob\nCharlie\n";
+        assertEquals(expectedOutput, outContent.toString());
     }
 }
