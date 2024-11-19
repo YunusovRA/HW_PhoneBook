@@ -24,5 +24,6 @@ public class PhoneBook {
     }
 
     public void printAllNames() {
+        contacts.keySet().stream().sorted().forEach(System.out::println);
     }
 }
