@@ -11,4 +11,15 @@ public class PhoneBookTest {
         assertEquals(2, phoneBook.add("Bob", "67890"));
         assertEquals(2, phoneBook.add("Alice", "12345"));
     }
+
+    @Test
+    public void testFindByNumber() {
+        PhoneBook phoneBook = new PhoneBook();
+        phoneBook.add("Alice", "12345");
+        phoneBook.add("Bob", "67890");
+        assertEquals("Alice", phoneBook.findByNumber("12345"));
+        assertEquals("Bob", phoneBook.findByNumber("67890"));
+        assertNull(phoneBook.findByNumber("11111"));
+    }
+}
 }
